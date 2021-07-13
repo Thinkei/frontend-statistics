@@ -50,7 +50,7 @@ class BarChart extends React.Component {
   render() {
     let barHeight = 30
 
-    let barGroups = this.statedata.map((d, i) => <g transform={`translate(0, ${i * barHeight})`}>
+    let barGroups = this.state.data.map((d, i) => <g transform={`translate(0, ${i * barHeight})`}>
       <BarGroup d={d} barHeight={barHeight} />
     </g>)
 
