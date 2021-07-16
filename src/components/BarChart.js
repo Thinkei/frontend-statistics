@@ -3,26 +3,59 @@ import BarGroup from './BarGroup';
 import '../App.css';
 
 const BarChart = () => {
-  const data = [
-    { name: 'Hero Design', value: 60 },
-    { name: 'Velonic', value: 40 },
+  const heroDesign = [];
+  const velonic = [];
+  const fileName = [
+    '2021-07-08.json',
+    '2021-06-22.json',
+    '2021-06-19.json',
+    '2021-06-08.json',
+    '2021-06-04.json',
+    '2021-06-02.json',
   ];
-  const barHeight = 30;
+  for (let i = 0; i < fileName.length; i++) {
+    let JSON = require('../data/' + fileName[i]);
+    heroDesign.push({
+      name: JSON.date,
+      value: Math.round(JSON.ratio['value']),
+    });
+    velonic.push({
+      name: JSON.date,
+      value: 100 - Math.round(JSON.ratio['value']),
+    });
+  }
 
-  const barGroups = data.map((d, i) => (
+  const barHeight = 30;
+  const velonicColour = '#b30000';
+  const heroDesignColour = '#348AA7';
+
+  const barGroupHeroDesign = heroDesign.map((d, i) => (
     <g transform={`translate(0, ${i * barHeight})`}>
-      <BarGroup d={d} barHeight={barHeight} />
+      <BarGroup d={d} barHeight={barHeight} barColour={heroDesignColour} />
+    </g>
+  ));
+
+  const barGroupVelonicDesign = velonic.map((d, i) => (
+    <g transform={`translate(0, ${i * barHeight})`}>
+      <BarGroup d={d} barHeight={barHeight} barColour={velonicColour} />
     </g>
   ));
 
   return (
-    <svg width="800" height="300">
+    <svg width="700" height="800">
       <g className="container">
-        <text className="title" x="10" y="30">
-          Week beginning 9th July
+        <text className="title" x="100" y="30">
+          Hero Design migration rate
         </text>
         <g className="chart" transform="translate(100,60)">
-          {barGroups}
+          {barGroupHeroDesign}
+        </g>
+
+        <text className="title" x="100" y="330">
+          Velonic usage rate
+        </text>
+        <g className="chart" transform="translate(100, 360)">
+          {barGroupVelonicDesign}
         </g>
       </g>
     </svg>

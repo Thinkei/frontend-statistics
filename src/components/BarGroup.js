@@ -2,7 +2,7 @@ import '../App.css';
 
 const BarGroup = props => {
   const barPadding = 2;
-  const barColour = '#348AA7';
+  const barColour = props.barColour;
   const widthScale = d => d * 10;
 
   const width = widthScale(props.d.value);
