@@ -1,5 +1,6 @@
 import React from 'react';
 import BarGroup from './BarGroup';
+import DrawTable from './DrawTable';
 import '../App.css';
 
 const BarChart = () => {
@@ -42,23 +43,26 @@ const BarChart = () => {
   ));
 
   return (
-    <svg width="700" height="800">
-      <g className="container">
-        <text className="title" x="100" y="30">
-          Hero Design migration rate
-        </text>
-        <g className="chart" transform="translate(100,60)">
-          {barGroupHeroDesign}
-        </g>
+    <div className="chart-and-table">
+      <svg width="950" height="800">
+        <g className="container">
+          <text className="title" x="100" y="30">
+            Hero Design migration rate
+          </text>
+          <g className="chart" transform="translate(100,60)">
+            {barGroupHeroDesign}
+          </g>
 
-        <text className="title" x="100" y="330">
-          Velonic usage rate
-        </text>
-        <g className="chart" transform="translate(100, 360)">
-          {barGroupVelonicDesign}
+          <text className="title" x="100" y="330">
+            Velonic usage rate
+          </text>
+          <g className="chart" transform="translate(100, 360)">
+            {barGroupVelonicDesign}
+          </g>
         </g>
-      </g>
-    </svg>
+      </svg>
+      <DrawTable />
+    </div>
   );
 };
 
