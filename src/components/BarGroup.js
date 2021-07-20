@@ -1,5 +1,3 @@
-import '../App.css';
-
 const BarGroup = props => {
   const barPadding = 2;
   const barColour = props.barColour;

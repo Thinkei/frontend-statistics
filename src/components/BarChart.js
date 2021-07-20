@@ -1,11 +1,9 @@
-import React from 'react';
 import BarGroup from './BarGroup';
-import '../App.css';
 
 const BarChart = () => {
   const heroDesign = [];
   const velonic = [];
-  const fileName = [
+  const fileNames = [
     '2021-07-08.json',
     '2021-06-22.json',
     '2021-06-19.json',
@@ -13,6 +11,7 @@ const BarChart = () => {
     '2021-06-04.json',
     '2021-06-02.json',
   ];
+  /*
   for (let i = 0; i < fileName.length; i++) {
     let JSON = require('../data/' + fileName[i]);
     heroDesign.push({
@@ -24,6 +23,20 @@ const BarChart = () => {
       value: 100 - Math.round(JSON.ratio['value']),
     });
   }
+
+*/
+  fileNames.map(
+    fileName => (
+      heroDesign.push({
+        name: require('../data/' + fileName).date,
+        value: Math.round(require('../data/' + fileName).ratio['value']),
+      }),
+      velonic.push({
+        name: require('../data/' + fileName).date,
+        value: 100 - Math.round(require('../data/' + fileName).ratio['value']),
+      })
+    )
+  );
 
   const barHeight = 30;
   const velonicColour = '#b30000';
