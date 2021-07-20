@@ -1,8 +1,6 @@
-import BarGroup from './BarGroup';
+import Bar from './Bar';
 
 const BarChart = () => {
-  const heroDesign = [];
-  const velonic = [];
   const fileNames = [
     '2021-07-08.json',
     '2021-06-22.json',
@@ -11,46 +9,32 @@ const BarChart = () => {
     '2021-06-04.json',
     '2021-06-02.json',
   ];
-  /*
-  for (let i = 0; i < fileName.length; i++) {
-    let JSON = require('../data/' + fileName[i]);
-    heroDesign.push({
-      name: JSON.date,
-      value: Math.round(JSON.ratio['value']),
-    });
-    velonic.push({
-      name: JSON.date,
-      value: 100 - Math.round(JSON.ratio['value']),
-    });
-  }
+  const heroDesignData = fileNames.map(fileName => {
+    const file = require('../data/' + fileName);
+    return {
+      name: file.date,
+      value: Math.round(file.ratio['value']),
+    };
+  });
 
-*/
-  fileNames.map(
-    fileName => (
-      heroDesign.push({
-        name: require('../data/' + fileName).date,
-        value: Math.round(require('../data/' + fileName).ratio['value']),
-      }),
-      velonic.push({
-        name: require('../data/' + fileName).date,
-        value: 100 - Math.round(require('../data/' + fileName).ratio['value']),
-      })
-    )
-  );
+  const velonicData = heroDesignData.map(data => ({
+    name: data.name,
+    value: 100 - data.value,
+  }));
 
   const barHeight = 30;
   const velonicColour = '#b30000';
   const heroDesignColour = '#348AA7';
 
-  const barGroupHeroDesign = heroDesign.map((d, i) => (
-    <g transform={`translate(0, ${i * barHeight})`}>
-      <BarGroup d={d} barHeight={barHeight} barColour={heroDesignColour} />
+  const barGroupHeroDesign = heroDesignData.map((data, idx) => (
+    <g key={data.name} transform={`translate(0, ${idx * barHeight})`}>
+      <Bar data={data} height={barHeight} colour={heroDesignColour} />
     </g>
   ));
 
-  const barGroupVelonicDesign = velonic.map((d, i) => (
-    <g transform={`translate(0, ${i * barHeight})`}>
-      <BarGroup d={d} barHeight={barHeight} barColour={velonicColour} />
+  const barGroupVelonicDesign = velonicData.map((data, idx) => (
+    <g key={data.name} transform={`translate(0, ${idx * barHeight})`}>
+      <Bar data={data} height={barHeight} colour={velonicColour} />
     </g>
   ));
 
