@@ -6,7 +6,7 @@ const Table = ({ data }) => {
     freq: data[key],
   }));
 
-  const renderTableData = velonicData.map((rowData, idx) => (
+  const tableData = velonicData.map((rowData, idx) => (
     <tr key={rowData.name}>
       <td> {idx + 1} </td>
       <td> {rowData.name}</td>
@@ -26,7 +26,7 @@ const Table = ({ data }) => {
           </tr>
         </tbody>
 
-        <tbody>{renderTableData}</tbody>
+        <tbody>{tableData}</tbody>
       </table>
     </div>
   );
