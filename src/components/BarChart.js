@@ -1,7 +1,5 @@
-import React from 'react';
 import BarGroup from './BarGroup';
 import DrawTable from './DrawTable';
-import '../App.css';
 
 const BarChart = () => {
   const heroDesign = [];

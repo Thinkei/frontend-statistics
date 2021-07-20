@@ -1,16 +1,14 @@
-import React from 'react';
-import '../App.css';
-
 const DrawTable = () => {
   const data = require('../data/2021-07-08.json')['@ehrocks/react-velonic'];
   const velonic = [];
   const dataKey = Object.keys(data);
-  for (let i = 0; i < dataKey.length; i++) {
+
+  dataKey.map(key =>
     velonic.push({
-      name: dataKey[i],
-      freq: data[dataKey[i]],
-    });
-  }
+      name: key,
+      freq: data[key],
+    })
+  );
 
   const renderTableData = velonic.map((d, i) => (
     <tr>
