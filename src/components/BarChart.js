@@ -1,5 +1,5 @@
 import Bar from './Bar';
-import DrawTable from './DrawTable';
+import Table from './Table';
 
 const BarChart = () => {
   const fileNames = [
@@ -22,6 +22,10 @@ const BarChart = () => {
     name: data.name,
     value: 100 - data.value,
   }));
+
+  const velonicComponent = require('../data/' + fileNames[0])[
+    '@ehrocks/react-velonic'
+  ];
 
   const barHeight = 30;
   const velonicColour = '#b30000';
@@ -58,7 +62,7 @@ const BarChart = () => {
           </g>
         </g>
       </svg>
-      <DrawTable />
+      <Table data={velonicComponent} />
     </div>
   );
 };

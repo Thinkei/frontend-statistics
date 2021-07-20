@@ -1,5 +1,4 @@
-const DrawTable = () => {
-  const data = require('../data/2021-07-08.json')['@ehrocks/react-velonic'];
+const Table = ({ data }) => {
   const velonicComponents = Object.keys(data);
 
   const velonicData = velonicComponents.map(key => ({
@@ -33,4 +32,4 @@ const DrawTable = () => {
   );
 };
 
-export default DrawTable;
+export default Table;
