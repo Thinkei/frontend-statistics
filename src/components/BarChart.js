@@ -1,4 +1,5 @@
 import Bar from './Bar';
+import Table from './Table';
 
 const BarChart = () => {
   const fileNames = [
@@ -22,6 +23,10 @@ const BarChart = () => {
     value: 100 - data.value,
   }));
 
+  const velonicComponent = require('../data/' + fileNames[0])[
+    '@ehrocks/react-velonic'
+  ];
+
   const barHeight = 30;
   const velonicColour = '#b30000';
   const heroDesignColour = '#348AA7';
@@ -39,23 +44,26 @@ const BarChart = () => {
   ));
 
   return (
-    <svg width="700" height="800">
-      <g className="container">
-        <text className="title" x="100" y="30">
-          Hero Design migration rate
-        </text>
-        <g className="chart" transform="translate(100,60)">
-          {barGroupHeroDesign}
-        </g>
+    <div className="chart-and-table">
+      <svg width="950" height="800">
+        <g className="container">
+          <text className="title" x="100" y="30">
+            Hero Design migration rate
+          </text>
+          <g className="chart" transform="translate(100,60)">
+            {barGroupHeroDesign}
+          </g>
 
-        <text className="title" x="100" y="330">
-          Velonic usage rate
-        </text>
-        <g className="chart" transform="translate(100, 360)">
-          {barGroupVelonicDesign}
+          <text className="title" x="100" y="330">
+            Velonic usage rate
+          </text>
+          <g className="chart" transform="translate(100, 360)">
+            {barGroupVelonicDesign}
+          </g>
         </g>
-      </g>
-    </svg>
+      </svg>
+      <Table data={velonicComponent} />
+    </div>
   );
 };
 
